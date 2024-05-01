@@ -39,10 +39,7 @@ VALIDATE $? "Enabling MySQL Server"
 systemctl start mysqld &>>$LOGFILE
 VALIDATE $? "Starting MySQL Server"
 
-# mysql_secure_installation --set-root-pass ExpenceApp@1 &>>$LOGFILE
-# VALIDATE $? "Setting up root password"
-
- mysql -h dbsql.nirmaladevops.cloud -uroot -pExpenseApp@1  -e 'show databases;'
+ mysql -h dbsql.nirmaladevops.cloud -uroot -p${mysql_root_password} -e 'show databases;'
 
 if [ $? -ne 0 ]
 then
@@ -52,5 +49,13 @@ then
 else
     echo -e "MySQL Root password is already setup...$Y SKIPPING $N"
 fi
+# mysql_secure_installation --set-root-pass ExpenceApp@1 &>>$LOGFILE
+# VALIDATE $? "Setting up root password"
+
+ 
+ # mysql -h dbsql.nirmaladevops.cloud -uroot -p${mysql_root_password} -e 'show databases;'
+ # mysql -h dbsql.nirmaladevops.cloud -uroot -pExpenseApp@1 -e 'show databases;'
+
+
 
 
