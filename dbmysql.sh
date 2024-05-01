@@ -38,6 +38,7 @@ VALIDATE $? "Enabling MySQL Server"
 
 systemctl start mysqld &>>$LOGFILE
 VALIDATE $? "Starting MySQL Server"
+# Below code is Idempotency nature(run multiple times same output)
 
  mysql -h dbsql.nirmaladevops.cloud -uroot -p${mysql_root_password} -e 'show databases;'
 
